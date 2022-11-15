@@ -1,0 +1,30 @@
+<p>
+<form>
+Search query: <input type="text" name="address" value="[% address %]" />
+</form>
+</p>
+<hr />
+[% IF address.length %]
+    [% IF logs %]
+        Results from <span style="background-color:lightblue">message</span>, <span style="background-color:lightyellow">log</span>:
+        <table border="1">
+            <tr>
+                <th>Date Time</th>
+                <th>Internal ID</th>
+                <th>Log message</th>
+            </tr>
+        [% FOREACH log IN logs %]
+            <tr style="background-color:[% IF log.id %]lightblue[% ELSE %]lightyellow[% END %]">
+                <td nowrap>[% log.created %]</td>
+                <td nowrap>[% log.int_id %]</td>
+                <td>[% log.str %]</td>
+            </tr>
+        [% END %]
+        </table>
+        [% IF more %]
+            There are more results
+        [% END %]
+    [% ELSE %]
+        No result
+    [% END %]
+[% END %]
